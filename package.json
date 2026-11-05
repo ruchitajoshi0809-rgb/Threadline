@@ -1,0 +1,21 @@
+{
+  "name": "threadline",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --names backend,frontend --prefix-colors blue,cyan \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "seed:demo": "npm run seed:demo --workspace backend",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "start": "concurrently --kill-others-on-fail --names backend,frontend --prefix-colors blue,cyan \"npm run start --workspace backend\" \"npm run start --workspace frontend\"",
+    "lint": "eslint frontend backend",
+    "typecheck": "npm run typecheck --workspace frontend && npm run typecheck --workspace backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.2.6"
+  }
+}
